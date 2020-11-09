@@ -1,4 +1,6 @@
 using System.Collections.Generic;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 namespace OSMJSON.Net.Entities
 {
@@ -6,9 +8,10 @@ namespace OSMJSON.Net.Entities
 
     public class Element
     {
+        [JsonConverter(typeof(StringEnumConverter))]
         public ElementTypes Type { get; }
         public ulong Id { get; }
-        public double Long { get; set; }
+        public double Lon { get; set; }
         public double Lat { get; set; }
         public Dictionary<string, string> Tags { get; set; }
 

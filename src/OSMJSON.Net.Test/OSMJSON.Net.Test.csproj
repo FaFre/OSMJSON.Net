@@ -13,4 +13,17 @@
     <PackageReference Include="coverlet.collector" Version="1.2.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="./Fixtures/osmSampleData.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="./Fixtures/overpassMixed.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\OSMJSON.Net\OSMJSON.Net.csproj" />
+  </ItemGroup>
+
 </Project>
