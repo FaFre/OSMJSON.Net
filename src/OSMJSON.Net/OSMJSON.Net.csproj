@@ -1,6 +1,16 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
+    <PackageId>OSMJSON.Net</PackageId>
+    <Version>1.0.0</Version>
+    <Authors>Fabian Freund</Authors>
+    <Copyright>Copyright © Fabian Freund, 2020</Copyright>
+    <Description>.Net types for the OSM API JSON format</Description>
+    <PackageTags>osm;osm json;json;openstreetmaps;overpass;overpass-api</PackageTags>
+    <PackageProjectUrl>https://github.com/FaFre/OSMJSON.Net</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/FaFre/OSMJSON.Net.git</RepositoryUrl>
+    <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
+
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
 
