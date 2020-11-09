@@ -12,8 +12,7 @@ namespace OSMJSON.Net.Entities
         public string Copyright { get; set; }
         public string Attribution { get; set; }
         public string License { get; set; }
-
-        [JsonConverter(typeof(ElementConverter))]
+        [JsonProperty("elements", ItemConverterType = typeof(ElementConverter))]
         public List<Element> Elements { get; set; }
     }
 }

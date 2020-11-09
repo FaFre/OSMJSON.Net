@@ -7,35 +7,16 @@ using OSMJSON.Net.Entities;
 
 namespace OSMJSON.Net.Converters
 {
-    public class ElementConverter : JsonConverter
+    public class ElementConverter : JsonConverter<Element>
     {
-        public override bool CanConvert(Type objectType)
+        public override Element ReadJson(JsonReader reader, Type objectType, Element existingValue, bool hasExistingValue, JsonSerializer serializer)
         {
-            throw new NotImplementedException();
+            return _readElement(JObject.Load(reader));
         }
 
-        public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
+        public override void WriteJson(JsonWriter writer, Element value, JsonSerializer serializer)
         {
-            switch (reader.TokenType)
-            {
-                case JsonToken.Null:
-                    return null;
-                case JsonToken.StartObject:
-                    var value = JObject.Load(reader);
-                    return _readElement(value);
-                case JsonToken.StartArray:
-                    var values = JArray.Load(reader);
-                    var elements = new List<Element>(values.Count);
-                    elements.AddRange(values.Cast<JObject>().Select(_readElement));
-                    return elements;
-            }
-
-            return null;
-        }
-
-        public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
-        {
-            throw new NotImplementedException();
+            serializer.Serialize(writer, value);
         }
 
         private Element _readElement(JObject value)
