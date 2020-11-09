@@ -43,6 +43,14 @@ namespace OSMJSON.Net.Converters
                             return value.ToObject<Relation>();
                     }
                 }
+                else
+                {
+                    throw new JsonException("Unknown Element-type");
+                }
+            }
+            else
+            {
+                throw new JsonException("The type property is necessary for all Elements");
             }
 
             return null;
