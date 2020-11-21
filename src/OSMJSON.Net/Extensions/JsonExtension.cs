@@ -4,7 +4,7 @@ using System.Text.Json;
 
 namespace OSMJSON.Net.Extension
 {
-    public static partial class JsonExtensions
+    internal static class JsonExtensions
     {
         public static T? ToObject<T>(this JsonElement element, JsonSerializerOptions? options = null)
         {

@@ -8,7 +8,7 @@ using OSMJSON.Net.Extension;
 
 namespace OSMJSON.Net.Converters
 {
-    public class ElementConverter : JsonConverter<Element>
+    internal class ElementConverter : JsonConverter<Element>
     {
         public override Element? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
         {
