@@ -1,17 +1,12 @@
-using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
-using Newtonsoft.Json.Serialization;
+using System.Text.Json.Serialization;
 
 namespace OSMJSON.Net.Entities
 {
     public class RelationElement
     {
-        [JsonConverter(typeof(StringEnumConverter), typeof(CamelCaseNamingStrategy))]
-        [JsonProperty("type")]
+        [JsonConverter(typeof(JsonStringEnumConverter))]
         public ElementTypes Type { get; }
-        [JsonProperty("ref")]
         public ulong? Ref { get; set; }
-        [JsonProperty("role")]
         public string? Role { get; set; }
 
         public RelationElement(ElementTypes? type)

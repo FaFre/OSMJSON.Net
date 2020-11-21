@@ -1,13 +1,12 @@
 using System;
-using Newtonsoft.Json;
+using System.Text.Json.Serialization;
 
 namespace OSMJSON.Net.Entities
 {
     public class OSM3SInfo
     {
-        [JsonProperty("timestamp_osm_base", NullValueHandling = NullValueHandling.Ignore)]
+        [JsonPropertyName("timestamp_osm_base")]
         public DateTime? OsmTimestamp { get; set; }
-        [JsonProperty("copyright", NullValueHandling = NullValueHandling.Ignore)]
         public string? Copyright { get; set; }
     }
 }

@@ -1,37 +1,38 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using OSMJSON.Net.Entities;
+using OSMJSON.Net.Extension;
 
 namespace OSMJSON.Net.Converters
 {
     public class ElementConverter : JsonConverter<Element>
     {
-        public override Element ReadJson(JsonReader reader, Type objectType, Element existingValue, bool hasExistingValue, JsonSerializer serializer)
+        public override Element? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
         {
-            return _readElement(JObject.Load(reader));
+            return _readElement(JsonDocument.ParseValue(ref reader)) ?? new Element(null, null);
         }
 
-        public override void WriteJson(JsonWriter writer, Element value, JsonSerializer serializer)
+        public override void Write(Utf8JsonWriter writer, Element value, JsonSerializerOptions options)
         {
-            serializer.Serialize(writer, value);
+            JsonSerializer.Serialize(writer, value);
         }
 
-        private Element _readElement(JObject value)
+        private Element? _readElement(JsonDocument value)
         {
-            string toCamelCase(string input)
+            string? toCamelCase(string? input)
             {
                 if (string.IsNullOrEmpty(input))
-                    return input;
+                    return null;
 
                 return Char.ToUpper(input.First()) + input.Substring(1);
             };
 
-            if (value.TryGetValue("type", StringComparison.InvariantCultureIgnoreCase, out var typeToken))
+            if (value.RootElement.TryGetProperty("type", out var typeElement))
             {
-                if (Enum.TryParse<ElementTypes>(toCamelCase(typeToken.Value<string>()), out var type))
+                if (Enum.TryParse<ElementTypes>(toCamelCase(typeElement.GetString()), out var type))
                 {
                     switch (type)
                     {
