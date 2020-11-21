@@ -6,7 +6,7 @@ namespace OSMJSON.Net.Entities
     {
         public IReadOnlyCollection<ulong>? Nodes { get; set; }
 
-        public Way(ElementTypes? type, ulong? id) : base(type, id)
+        public Way(ElementTypes type, long id) : base(type, id)
         {
         }
     }

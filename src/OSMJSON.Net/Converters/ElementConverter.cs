@@ -12,15 +12,35 @@ namespace OSMJSON.Net.Converters
     {
         public override Element? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
         {
-            return _readElement(JsonDocument.ParseValue(ref reader)) ?? new Element(null, null);
+            return _readElement(JsonDocument.ParseValue(ref reader), options) ?? new Element(ElementTypes.Node, -1);
         }
 
         public override void Write(Utf8JsonWriter writer, Element value, JsonSerializerOptions options)
         {
-            JsonSerializer.Serialize(writer, value);
+            var writeOptions = new JsonSerializerOptions(options);
+
+            var recursiveConverter = writeOptions.Converters.FirstOrDefault(x => x is ElementConverter);
+            if (recursiveConverter != null)
+                writeOptions.Converters.Remove(recursiveConverter);
+
+            switch (value)
+            {
+                case Node node:
+                    JsonSerializer.Serialize(writer, node, writeOptions);
+                    break;
+                case Way way:
+                    JsonSerializer.Serialize(writer, way, writeOptions);
+                    break;
+                case Relation relation:
+                    JsonSerializer.Serialize(writer, relation, writeOptions);
+                    break;
+                default:
+                    JsonSerializer.Serialize(writer, value, writeOptions);
+                    break;
+            };
         }
 
-        private Element? _readElement(JsonDocument value)
+        private Element? _readElement(JsonDocument value, JsonSerializerOptions options)
         {
             string? toCamelCase(string? input)
             {
@@ -37,11 +57,11 @@ namespace OSMJSON.Net.Converters
                     switch (type)
                     {
                         case ElementTypes.Node:
-                            return value.ToObject<Node>();
+                            return value.ToObject<Node>(options);
                         case ElementTypes.Way:
-                            return value.ToObject<Way>();
+                            return value.ToObject<Way>(options);
                         case ElementTypes.Relation:
-                            return value.ToObject<Relation>();
+                            return value.ToObject<Relation>(options);
                     }
                 }
                 else

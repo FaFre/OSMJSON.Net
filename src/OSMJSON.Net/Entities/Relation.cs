@@ -6,7 +6,7 @@ namespace OSMJSON.Net.Entities
     {
         public IReadOnlyCollection<RelationElement>? Members { get; set; }
 
-        public Relation(ElementTypes? type, ulong? id) : base(type, id)
+        public Relation(ElementTypes type, long id) : base(type, id)
         {
         }
     }
