@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <PackageId>OSMJSON.Net</PackageId>
-    <Version>1.0.1</Version>
+    <Version>1.1.0</Version>
     <Authors>Fabian Freund</Authors>
     <Copyright>Copyright © Fabian Freund, 2020</Copyright>
     <Description>.Net types for the OSM API JSON format</Description>

@@ -6,20 +6,20 @@
 
 ## Desciption
 
-OSMJSON.Net is a small .Net Standard library containing the necessary types for serializing and deserializing of OSM JSON. It is build upon **Newtonsoft.Json** and not compatible with **System.Text.Json**.
+OSMJSON.Net is a small .Net Standard library containing the necessary types for serializing and de-serializing of OSM JSON. Since version **1.1.0**, **System.Text.Json** is used under the hood.
 
-Currently deserialization of both [OpenStreetMap OSM JSON](https://wiki.openstreetmap.org/wiki/OSM_JSON) and [Overpass-Api OSM JSON](http://overpass-api.de/output_formats.html#json) is supported. Serialization of OSM JSON uses the OpenStreetMap OSM JSON notation for writing the version number.
+Currently de-serialization of both [OpenStreetMap OSM JSON](https://wiki.openstreetmap.org/wiki/OSM_JSON) and [Overpass-Api OSM JSON](http://overpass-api.de/output_formats.html#json) is supported. Serialization of OSM JSON uses the OpenStreetMap OSM JSON notation for writing the version number.
 
 ## Example
 
 ### Deserialization
 
 ```csharp
-JsonConvert.DeserializeObject<ElementCollection>(json);
+OSMJSON.Deserialize(json);
 ```
 
 ### Serialization
 
 ```csharp
-JsonConvert.SerializeObject(elementCollection);
+OSMJSON.Serialize(elementCollection);
 ```
