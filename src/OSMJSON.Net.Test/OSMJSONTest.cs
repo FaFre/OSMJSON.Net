@@ -1,10 +1,5 @@
-using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text.RegularExpressions;
 using JsonDiffPatchDotNet;
-using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using OSMJSON.Net.Entities;
 using Xunit;
@@ -19,8 +14,8 @@ namespace OSMJSON.Net.Test
         private bool _reserializationTest(string file)
         {
             var json = File.ReadAllText("./Fixtures/osmSampleData.json");
-            var deserialized = JsonConvert.DeserializeObject<ElementCollection>(json);
-            var reserialized = JsonConvert.SerializeObject(deserialized);
+            var deserialized = OSMJSON.Deserialize(json);
+            var reserialized = OSMJSON.Serialize(deserialized);
 
             var diff = new JsonDiffPatch();
             var a = JToken.Parse(json);
