@@ -16,7 +16,7 @@ namespace OSMJSON.Net.Entities
         [JsonProperty("id")]
         public ulong Id { get; }
         [JsonProperty("tags", NullValueHandling = NullValueHandling.Ignore)]
-        public Dictionary<string, string> Tags { get; set; }
+        public IReadOnlyDictionary<string, string>? Tags { get; set; }
         [JsonProperty("timestamp", NullValueHandling = NullValueHandling.Ignore)]
         public DateTime? Timestamp { get; set; }
         [JsonProperty("version", NullValueHandling = NullValueHandling.Ignore)]
@@ -24,7 +24,7 @@ namespace OSMJSON.Net.Entities
         [JsonProperty("changeset", NullValueHandling = NullValueHandling.Ignore)]
         public int? Changeset { get; set; }
         [JsonProperty("user", NullValueHandling = NullValueHandling.Ignore)]
-        public string User { get; set; }
+        public string? User { get; set; }
         [JsonProperty("uid", NullValueHandling = NullValueHandling.Ignore)]
         public ulong? UId { get; set; }
 

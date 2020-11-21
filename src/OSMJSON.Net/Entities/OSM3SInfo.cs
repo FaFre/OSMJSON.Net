@@ -8,6 +8,6 @@ namespace OSMJSON.Net.Entities
         [JsonProperty("timestamp_osm_base", NullValueHandling = NullValueHandling.Ignore)]
         public DateTime? OsmTimestamp { get; set; }
         [JsonProperty("copyright", NullValueHandling = NullValueHandling.Ignore)]
-        public string Copyright { get; set; }
+        public string? Copyright { get; set; }
     }
 }

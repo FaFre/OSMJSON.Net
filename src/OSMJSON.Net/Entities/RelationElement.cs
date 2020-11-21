@@ -10,9 +10,9 @@ namespace OSMJSON.Net.Entities
         [JsonProperty("type")]
         public ElementTypes Type { get; }
         [JsonProperty("ref")]
-        public ulong Ref { get; set; }
+        public ulong? Ref { get; set; }
         [JsonProperty("role")]
-        public string Role { get; set; }
+        public string? Role { get; set; }
 
         public RelationElement(ElementTypes? type)
         {
