@@ -4,7 +4,12 @@ using System.Text.Json.Serialization;
 
 namespace OSMJSON.Net.Entities
 {
-    public enum ElementTypes { Node, Way, Relation }
+    public enum ElementTypes : byte
+    {
+        Node = 1,
+        Way,
+        Relation
+    }
 
     public class Element
     {
