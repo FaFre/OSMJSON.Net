@@ -13,7 +13,7 @@ namespace OSMJSON.Net.Test
 
         private bool _reserializationTest(string file)
         {
-            var json = File.ReadAllText("./Fixtures/osmSampleData.json");
+            var json = File.ReadAllText(file);
             var deserialized = OSMJSON.Deserialize(json);
             var reserialized = OSMJSON.Serialize(deserialized);
 
